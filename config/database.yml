@@ -19,6 +19,28 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  host: <%= ENV.fetch("DB_HOST") { 'localhost' } %>
+
+  # The TCP port the server listens on. Defaults to 5432.
+  # If your server runs on a different port number, change accordingly.
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+
+  # The specified database role being used to connect to postgres.
+  # To create additional roles in postgres see `$ createuser --help`.
+  # When left blank, postgres will use the default role. This is
+  # the same name as the operating system user running Rails.
+  username: <%= ENV.fetch("POSTGRES_USER") { "postgres" } %>
+
+  # The password associated with the postgres role (username).
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "postgres" } %>
+
 development:
   <<: *default
   database: basix_development
