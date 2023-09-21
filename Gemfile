@@ -69,7 +69,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
 
   # Code style checking for RSpec files (https://github.com/rubocop/rubocop-rspec)
-  # gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
@@ -84,6 +84,9 @@ group :development do
 
   # Enhance Exception#message by adding a short explanation where the exception is raised
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
+
+  # Run unit-tests with RSpec [https://rspec.info/]
+  gem 'rspec-rails'
 end
 
 ###[ Testing ]#########################################################
