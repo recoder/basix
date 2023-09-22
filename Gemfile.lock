@@ -80,6 +80,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    brakeman (6.0.1)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
@@ -110,6 +111,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    kwalify (0.7.2)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -187,6 +189,10 @@ GEM
     rake (13.0.6)
     rdoc (6.5.0)
       psych (>= 4.0.0)
+    reek (6.1.4)
+      kwalify (~> 0.7.0)
+      parser (~> 3.2.0)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (2.8.1)
     reline (0.3.8)
       io-console (~> 0.5)
@@ -274,6 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  brakeman (>= 6.0.0)
   cssbundling-rails
   debug
   error_highlight (>= 0.4.0)
@@ -282,6 +289,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.0.beta1)
+  reek
   rspec-rails
   rubocop
   rubocop-performance
