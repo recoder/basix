@@ -60,7 +60,7 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri windows ]
 
   # Automatic Ruby code style checking tool. (https://github.com/rubocop/rubocop)
-    gem 'rubocop', require: false
+  gem 'rubocop', require: false
 
   # Automatic performance checking tool for Ruby code. (https://github.com/rubocop/rubocop-performance)
   gem 'rubocop-performance', require: false
@@ -87,6 +87,12 @@ group :development do
 
   # Run unit-tests with RSpec [https://rspec.info/]
   gem 'rspec-rails'
+
+  # Find potential security vulnerabilities
+  gem 'brakeman', '>=6.0.0'
+
+  # Detect code smells
+  gem 'reek', require: false
 end
 
 ###[ Testing ]#########################################################
