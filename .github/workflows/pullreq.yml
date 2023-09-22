@@ -1,0 +1,73 @@
+name: ReviewDawg
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  linters:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          cache: yarn
+      - name: Install Yarn packages
+        run: bin/yarn install --frozen-lockfile
+      - name: Apply RuboCop
+        uses: reviewdog/action-rubocop@v2
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile rubocop-performance:gemfile
+          reporter: github-pr-review
+          github_token: ${{ secrets.github_token }}
+      - name: Apply Brakeman
+        uses: reviewdog/action-brakeman@v2
+        with:
+          brakeman_version: gemfile
+          github_token: ${{ secrets.github_token }}
+      - name: Apply reek
+        uses: reviewdog/action-reek@v1
+        with:
+          reek_version: gemfile
+          reporter: github-pr-review
+#          fail_on_error: true
+          github_token: ${{ secrets.github_token }}
+#      - name: Apply fasterer
+#        uses: vk26/action-fasterer@v1
+#        with:
+#          reporter: github-pr-review
+#          github_token: ${{ secrets.github_token }}
+      - name: Apply dotenv-linter
+        uses: dotenv-linter/action-dotenv-linter@v2
+        with:
+          reporter: github-code-suggestions
+          dotenv_linter_flags: --skip UnorderedKey
+          github_token: ${{ secrets.github_token }}
+#      - name: Apply yamllint
+#        uses: reviewdog/action-yamllint@v1
+#        with:
+#          reporter: github-pr-review
+#          yamllint_flags: 'src/'
+#          fail_on_error: true
+#          github_token: ${{ secrets.github_token }}
+      - name: Apply detect-secrets
+        uses: reviewdog/action-detect-secrets@master
+        with:
+          reporter: github-pr-review
+          github_token: ${{ secrets.github_token }}
+      - name: Apply Best Practices
+        uses: blooper05/action-rails_best_practices@v1
+        with:
+          # https://github.com/blooper05/action-rails_best_practices#input
+          reporter: github-pr-review
+          level: warning
+          github_token: ${{ secrets.github_token }}

@@ -1,0 +1,21 @@
+---
+detectors:
+  IrresponsibleModule:
+    enabled: false
+
+  TooManyStatements:
+    max_statements: 5
+
+directories:
+  "app/controllers":
+    NestedIterators:
+      enabled: false
+  "app/helpers**":
+    UtilityFunction:
+      enabled: false
+  "lib/**/test/**":
+    UtilityFunction:
+      enabled: false
+
+exclude_paths:
+  - vendor/**
