@@ -92,6 +92,10 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.1.1)
       ruby2_keywords
     error_highlight (0.5.1)
@@ -283,6 +287,7 @@ DEPENDENCIES
   brakeman (>= 6.0.0)
   cssbundling-rails
   debug
+  dotenv-rails
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder

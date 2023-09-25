@@ -59,6 +59,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[ mri windows ]
 
+  # Autoload dotenv in Rails. (https://github.com/bkeepers/dotenv)
+  gem 'dotenv-rails'
+
   # Automatic Ruby code style checking tool. (https://github.com/rubocop/rubocop)
   gem 'rubocop', require: false
 
